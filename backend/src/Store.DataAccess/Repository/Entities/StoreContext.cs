@@ -1,6 +1,4 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Store.DataAccess.Repository.DBConf;
 
@@ -8,9 +6,8 @@ namespace Store.DataAccess.Repository.Entities
 {
     public partial class StoreContext : DbContext
     {
-        private readonly IAccessConnectionString _accessConnectionString;
-        private readonly ILogger<StoreContext> _log;
-
+        IAccessConnectionString _accessConnectionString;
+        ILogger<StoreContext> _log;
         public StoreContext()
         {
         }
@@ -19,14 +16,12 @@ namespace Store.DataAccess.Repository.Entities
             : base(options)
         {
         }
-
+  
         public StoreContext(IAccessConnectionString accessConnectionString, ILogger<StoreContext> log)
         {
             _accessConnectionString = accessConnectionString;
             _log = log;
         }
-
-
         public virtual DbSet<AppRole> AppRole { get; set; }
         public virtual DbSet<AppUser> AppUser { get; set; }
         public virtual DbSet<EstimationLogs> EstimationLogs { get; set; }
@@ -63,11 +58,11 @@ namespace Store.DataAccess.Repository.Entities
             modelBuilder.Entity<AppUser>(entity =>
             {
                 entity.HasIndex(e => e.EmailId)
-                    .HasName("UQ__AppUser__7ED91ACEAACD9B49")
+                    .HasName("UQ__AppUser__7ED91ACEDAB87437")
                     .IsUnique();
 
                 entity.HasIndex(e => e.LoginName)
-                    .HasName("UQ__AppUser__DB8464FFC41333B1")
+                    .HasName("UQ__AppUser__DB8464FFC495D375")
                     .IsUnique();
 
                 entity.Property(e => e.Contact).HasMaxLength(15);

@@ -52,7 +52,7 @@ namespace Store.Api.Controllers
                 if (!ModelState.IsValid) { return BadRequest(); }
                 var result = _service.GetByCustom(userParam.LoginName + "#$#" + userParam.Password);
                 if (result == null)
-                    return BadRequest(new { message = "Username or password is incorrect" });
+                    return Unauthorized();
                 else
                 {
                     var user = CreateToken(result);

@@ -5,6 +5,7 @@ Create Table [dbo].[AppRole]
 Id bigint Primary key identity(1,1),
 Code nvarchar(100) not null,
 Description nvarchar(300) null,
+Discount int null,
 CreatedDate datetime not null,
 UpdatedDate datetime null,
 IsActive bit not null

@@ -37,8 +37,9 @@ namespace Store.Business.Implementation
                 var result = _AppUserDataService.GetByCustom(json);
                 var config = new MapperConfiguration(cfg => {
                     cfg.CreateMap<AppUser, AppUserModel>()
-                    .ForMember(d => d.Role, o => o.MapFrom(t => t.Role.Description));
-                    });
+                    .ForMember(d => d.Role, o => o.MapFrom(t => t.Role.Description))
+                    .ForMember(d => d.Discount, o => o.MapFrom(t => t.Role.Discount));
+                });
                 IMapper iMapper = config.CreateMapper();
                 AppUser = iMapper.Map<AppUser,AppUserModel>(result);
                 return AppUser;
